@@ -4,6 +4,9 @@ function sumOfNumbers(lastNumber: number = 0) {
   for (let startNumber = 0; startNumber <= lastNumber; startNumber++) {
     sum += startNumber;
   }
+  if (!Number.isInteger(lastNumber)) {
+    sum += lastNumber - Math.floor(lastNumber);
+  }
   console.log(sum);
 }
-sumOfNumbers(2.5);
+sumOfNumbers(5);
