@@ -2,16 +2,26 @@
 // Саму задачу обернуть в отдельную функцию getDate, которая принимает в качестве параметра произвольную дату в формате '2026-10-22T22:10:15'
 //* Проверить валидна ли дата в переданном параметре
 
-const now: Date = new Date();
+function refactoring(num: number): string {
+  return num.toString().padStart(2, "0");
+}
 
-const day = now.getDate().toString().padStart(2, "0");
-const month = (now.getMonth() + 1).toString().padStart(2, "0");
-const year = now.getFullYear();
+function getDate(dateString?: string): string {
+  let date: Date;
+  if (dateString) {
+    date = new Date(dateString);
+  } else {
+    date = new Date();
+  }
 
-const hours = now.getHours().toString().padStart(2, "0");
-const minutes = now.getMinutes().toString().padStart(2, "0");
-const seconds = now.getSeconds().toString().padStart(2, "0");
+  const day = refactoring(date.getDate());
+  const month = refactoring(date.getMonth() + 1);
+  const year = refactoring(date.getFullYear());
+  const hours = refactoring(date.getHours());
+  const minutes = refactoring(date.getMinutes());
+  const seconds = refactoring(date.getSeconds());
 
-const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+  return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+}
 
-console.log(formattedDate);
+console.log(getDate("2026-10-22T22:10:15"));
